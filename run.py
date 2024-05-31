@@ -50,21 +50,6 @@ if __name__ == '__main__':
     parser.add_argument('--anomaly_ratio', type=float, default=0.25, help='prior anomaly ratio (%)')
 
     # model define
-    parser.add_argument('--if_node', action='store_true', default=False)
-    parser.add_argument('--if_T_i_D', action='store_true', default=False)
-    parser.add_argument('--if_D_i_W', action='store_true', default=False)
-    parser.add_argument('--full_att', action='store_true', default=False)
-    parser.add_argument('--temp_dim_tid', type=int, default=24, help='for uniformer')
-    parser.add_argument('--temp_dim_diw', type=int, default=24, help='for uniformer')
-    parser.add_argument('--time_of_day_size', type=int, default=288, help='for uniformer')
-    parser.add_argument('--day_of_week_size', type=int, default=7, help='for uniformer')
-    parser.add_argument('--node_dim', type=int, default=24, help='for uniformer')
-    parser.add_argument('--rank', type=int, default=16, help='for uniformer')
-    parser.add_argument('--input_dim', type=int, default=3, help='for uniformer')
-    # parser.add_argument('--embed_dim', type=int, default=64, help='for uniformer')
-    parser.add_argument('--num_layer', type=int, default=3, help='for uniformer')
-    parser.add_argument('--rank_factor', type=int, default=10, help='for uniformer')
-    # for others
     parser.add_argument('--top_k', type=int, default=5, help='for TimesBlock')
     parser.add_argument('--num_kernels', type=int, default=6, help='for Inception')
     parser.add_argument('--enc_in', type=int, default=7, help='encoder input size')
@@ -195,13 +180,5 @@ if __name__ == '__main__':
         exp = Exp(args)  # set experiments
         print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
         exp.test(setting, test=1)
-        # exp.test_analysis(setting, test=1)
         torch.cuda.empty_cache()
-
-
-
-# python -u run.py --task_name long_term_forecast --is_training 1  --root_path ./dataset/ETT-small/  --data_path ETTh2.csv --model_id ETTh2_96_96 --model iTransformer --data ETTh2 --features M --seq_len 96 --label_len 48  --pred_len 96  --e_layers 2 --d_layers 1 --factor 3 --enc_in 7 --dec_in 7 --c_out 7 --des 'Exp' --d_model 128 --d_ff 128 --itr 1
-
-# python -u run.py --task_name long_term_forecast --is_training 1  --root_path ./dataset/ETT-small/  --data_path ETTh2.csv --model_id ETTh2_96_96 --model iTransformer --data ETTh2 --features M --seq_len 96 --label_len 48 --pred_len 96 --e_layers 2 --d_layers 1 --factor 3 --enc_in 7 --dec_in 7 --c_out 7 --des 'Exp' --d_model 128 --d_ff 128 --itr 1
-
 
